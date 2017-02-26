@@ -25,9 +25,12 @@ public class CalculateLongestStringController {
         List<String> strings = sl.getStrings();
         Comparator<StringResultDTO> byMaximumWordLength = (string1, string2) -> Integer.compare(
                 string1.getLongestWord(), string2.getLongestWord());
+        Comparator<StringResultDTO> byLexicographicalComparison = (string1, string2) -> 
+                string2.getString().compareTo(string1.getString());
         List<StringResultDTO> results = strings.stream()
         						.map(string -> new StringResultDTO(string, calculateMax(string.split("\\b"))))
-        							.sorted(byMaximumWordLength.reversed()).collect(Collectors.toList());
+        							.sorted(byMaximumWordLength.reversed().thenComparing(byLexicographicalComparison))
+        							.collect(Collectors.toList());
     	return new ResponseEntity<List<StringResultDTO>>(results, HttpStatus.OK); 
     }
     
@@ -44,6 +47,7 @@ public class CalculateLongestStringController {
 			.entrySet().stream()
 				.sorted(Map.Entry.<String, Integer> comparingByValue()
 						.reversed()
+						.thenComparing(Map.Entry.<String, Integer> comparingByKey()) 
 			)
 			.collect(
     				Collectors.toMap(
