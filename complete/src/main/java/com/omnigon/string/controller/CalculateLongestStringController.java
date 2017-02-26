@@ -1,14 +1,10 @@
 package com.omnigon.string.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
@@ -18,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.SortedSetMultimap;
-import com.google.common.collect.TreeMultimap;
 import com.omnigon.string.domain.StringListDTO;
 import com.omnigon.string.domain.StringResultDTO;
 
@@ -36,7 +28,7 @@ public class CalculateLongestStringController {
         List<StringResultDTO> results = strings.stream()
         						.map(string -> new StringResultDTO(string, calculateMax(string.split("\\b"))))
         							.sorted(byMaximumWordLength.reversed()).collect(Collectors.toList());
-    	return new ResponseEntity<List<StringResultDTO>>(results, HttpStatus.OK);
+    	return new ResponseEntity<List<StringResultDTO>>(results, HttpStatus.OK); 
     }
     
     private int calculateMax(String[] words) {
