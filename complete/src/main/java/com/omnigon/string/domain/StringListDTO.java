@@ -2,7 +2,7 @@ package com.omnigon.string.domain;
 
 import java.util.List;
 
-public class StringList {
+public class StringListDTO {
 	private List<String> strings;
 
 	public List<String> getStrings() {
