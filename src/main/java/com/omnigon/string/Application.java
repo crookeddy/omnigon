@@ -1,4 +1,4 @@
-package com.omnigon.string.controller;
+package com.omnigon.string;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
